@@ -1,0 +1,12 @@
+r-markdown
+results-of-the-sample-script.
+including-plots
+using-bookdown
+another-chapter
+a-section
+a-sub-section
+another-section
+pre-requisites
+the-instructions
+document-structure
+knit-and-publish
