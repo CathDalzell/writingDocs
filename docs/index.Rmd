@@ -17,48 +17,56 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 library('bookdown')
 ```
 
-# R Markdown
+# The problem
 
-When you create an RMarkdown document in RStudio, it helpfully supplies an example scripts to remind you of the most common commands.
+You have an awesome code project hosted on GitHub. You launch into an explanation of how it works in your `Readme.md`. You push to GitHub only to discover that the site has truncated your magnum opus half way through. You now need to link to a separate web site for the complete documentation.
 
-## Results of the sample script.
+There is a simpler way. Include your documentation in a folder of your repo, and use `bookdown` and GitHub pages to display the result in a classy format. No need to know HTML or CSS -- just a bit of Markdown and a willingness to open RStudio.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Using bookdown
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+R package `bookdown` allows organizing and compiling several Rmarkdown (or simple markdown files) into a book-like website complete with table of contents and chapter links. The author, Yihui Xie, illustrates the results in his bookdown formatted [documentation](https://bookdown.org/yihui/bookdown/). `Bookdown` has a lot of options, but I'm just going to focus on the basics required to host a multi-page document on github as supplementary documentation for a repo. 
+
+## Pre-requisites
+
+* Know how to install R and RStudio. 
+* Know enough about R to install a package 
+* Know enough about RStudio to create an RMarkdown document.
+* Have a GitHub account and not be afraid to use it.
+
+## What's R got to do with it?
+
+`bookdown` happens to be an R package, which is why we need R and RStudio (the R IDE). If you want to analyse data in your project using R, you can both run and publish the results from the same script, using RMarkdown. `bookdown` lets you write a complete data science textbook on the results, if you are so minded. But fear not. RMarkdown is a superset of Markdown, and `bookdown` can be used to write anything you like with or without supporting R code. 
+
+## Stuff we can do
+
+### $\LaTeX$ is supported. 
+
+
+
+$$
+e^{i\pi}= -1
+$$
+
+### Plots and calculations
 
 ```{r cars}
 summary(cars)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
+```{r pressure, echo=TRUE}
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# The Instructions
 
-
-
-
-# Using bookdown
-
-R package `bookdown` allows organizing and compiling several Rmarkdown (or simple markdown files) into a book like website complete with table of contents and chapter links. The author, Yihui Xie, illustrates the results in bookdown formatted [documentation](https://bookdown.org/yihui/bookdown/). `Bookdown` has a lot of options, but I'm just going to focus on the basics required to host a multipage document on github as supplementary documentation for a repo. 
-
-## Pre-requisites
-
-You have to be able to install R and RStudio. Know enough about R to install a package and know enough about RStudio to know how to create an RMarkdown document.
-
-## The Instructions
+But back to `bookdown` ...
 
 1. Install R and RStudio
 2. In the console of RStudio, enter `install.packages("bookdown")` to install the package.
-3. Create your repo, say `myRepo` and create and R Project based on that repo.
-4. Create a folder in `myRepo` called `docs`, say. Your book will live in `docs`.
-5. Create and Rmd file called `index.Rmd` in `docs`.
+3. Create your repo, say `myRepo` and create an R Project based on that repo.
+4. Create a folder in `myRepo` called `docs`, say. Your book is going to live in `docs`, allowing the rest of your repo to contain an awesome project of some kind.
+5. Create an Rmd file called `index.Rmd` in `docs`.
 
 An RMarkdown document begins with some yaml lines. The default that comes with RStudio looks like this:
 
@@ -69,49 +77,54 @@ date: "2022-09-06"
 output: html_document
 ```
 
-This yaml instructs `knitr` to render the document in the usual way. We need to change this if we want to get `bookdown` output. Here is a simple example:
+This yaml instructs `knitr` to render the document in the usual way. We need to change this if we want to get `bookdown` output. This simple example works:
 
 ```
 title: "A Test Book"
-author: "Catherine Dalzell"
+author: "Your Name"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 link-citations: yes
-github-repo: CathDalzell/writingDocs
+github-repo: GitHub_username/myRepo
 description: "A simple Bookdown demo"
 ```
 
-There are other options, but this will get the job done. Note that this yaml is specific to hosting in github format on Github. I have supplied the name of my repo -- writingDocs in this case and indicated that I want the output to be `bookdown::gitbook`. 
+There are other options, but this will get the job done if you want to host on GitHub using GitHub Pages. Note that the repo name is what it says, not `myRepo/docs`, or wherever you are storing you documentation.
 
-### Document structure
+## Document structure
 
-Major headings in markdown are noted with a single hash `#`. In bookdown, a major heading signifies the start of a new chapter. double hashes indicate subsectionsm, which also get links in the table of contents. Triple hashes do not show up in the TOC, but they display in the body of the document as minor headings. 
-
+Major headings in markdown are noted with a single hash `#`. In bookdown, a major heading signifies the start of a new chapter. Double hashes create subsections; these also get links in the table of contents. Triple hashes do not show up in the TOC, but they display in the body of the document as minor headings. 
 It is possible to build a bookdown book from a collection of Rmd files, but the simplest way to get a book is to write everything in one long Rmd file, using major headings to define the chapters.
 
-### knit and publish
+## knit and publish
 
-6. click the `Knit` button in RStudio to render the book. It should display in RStudio's default browser. 
-7. When you like what you see, push the entire project to Github. 
-8. Check your repo. The files that contain your book will be there, but they will not display as a static web site.
-9. Open the `settings` off your repo and click on `pages`. It's on the left hand side of the page.
+6. click the `Knit` button in RStudio to render the book. It should display in RStudio's default browser. You should now see a folder called `_book` in the `docs` 
+7. When you like what you see and have finished your edits, push the entire project to Github. 
+8. Check your repo on GitHub. The files that contain your book will be there, but they will not display as a static web site. We can fix that.
+9. Open the `settings` of your repo and click on `pages`. It's on the left hand side of the page.
 
 ![the pages setup](step1.png)
 10. Under `source`, select `GitHub Actions` followed by `Static HTML`.
 11. You will be taken to a configuration document.
 
 ![configuration](pages.png)
+
 12. The only thing you need to change is the `path` entry. The default is `.`. Change this to the folder that contains your bookdown output. In my case, this is `docs/_book`.
 13. Press the big green button to commit your change and pull it back down to your local repo.
 14. Wait a moment and then check under settings -> pages again. You should see something like this:
 
 ![final step](step2.png)
+
 15. GitHub informs you that your site is live at `[book_url]`.
-16. To make your book easy to find, copy the url and link to it from your `Readme`. 
+16. To make your book easy to find, copy this url and link to it from your `Readme`. 
+
+You now have beautiful documentation to supplement your awesome project!
 
 # Another chapter
+
+Just some Lorem Ipsum to pad the book.
 
 ## A section
 

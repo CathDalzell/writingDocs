@@ -10,3 +10,10 @@ pre-requisites
 the-instructions
 document-structure
 knit-and-publish
+the-problem
+whats-r-got-to-do-with-it
+stuff-we-can-publish
+a-famous-formula
+plots-and-calculations
+latex-is-supported.
+stuff-we-can-do

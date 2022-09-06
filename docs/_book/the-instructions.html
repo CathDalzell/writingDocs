@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | A Test Book</title>
+  <title>3 The Instructions | A Test Book</title>
   <meta name="description" content="A simple Bookdown demo" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | A Test Book" />
+  <meta property="og:title" content="3 The Instructions | A Test Book" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A simple Bookdown demo" />
   <meta name="github-repo" content="CathDalzell/writingDocs" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | A Test Book" />
+  <meta name="twitter:title" content="3 The Instructions | A Test Book" />
   
   <meta name="twitter:description" content="A simple Bookdown demo" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="using-bookdown.html"/>
+<link rel="next" href="another-chapter.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -173,19 +173,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="the-instructions" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> The Instructions<a href="the-instructions.html#the-instructions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>But back to <code>bookdown</code> …</p>
+<ol style="list-style-type: decimal">
+<li>Install R and RStudio</li>
+<li>In the console of RStudio, enter <code>install.packages("bookdown")</code> to install the package.</li>
+<li>Create your repo, say <code>myRepo</code> and create an R Project based on that repo.</li>
+<li>Create a folder in <code>myRepo</code> called <code>docs</code>, say. Your book is going to live in <code>docs</code>, allowing the rest of your repo to contain an awesome project of some kind.</li>
+<li>Create an Rmd file called <code>index.Rmd</code> in <code>docs</code>.</li>
+</ol>
+<p>An RMarkdown document begins with some yaml lines. The default that comes with RStudio looks like this:</p>
+<pre><code>title: &quot;My Title&quot;
+author: &quot;Catherine Dalzell&quot;
+date: &quot;2022-09-06&quot;
+output: html_document</code></pre>
+<p>This yaml instructs <code>knitr</code> to render the document in the usual way. We need to change this if we want to get <code>bookdown</code> output. This simple example works:</p>
+<pre><code>title: &quot;A Test Book&quot;
+author: &quot;Your Name&quot;
+date: &quot;2022-09-06&quot;
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+github-repo: GitHub_username/myRepo
+description: &quot;A simple Bookdown demo&quot;</code></pre>
+<p>There are other options, but this will get the job done if you want to host on GitHub using GitHub Pages. Note that the repo name is what it says, not <code>myRepo/docs</code>, or wherever you are storing you documentation.</p>
+<div id="document-structure" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Document structure<a href="the-instructions.html#document-structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Major headings in markdown are noted with a single hash <code>#</code>. In bookdown, a major heading signifies the start of a new chapter. Double hashes create subsections; these also get links in the table of contents. Triple hashes do not show up in the TOC, but they display in the body of the document as minor headings.
+It is possible to build a bookdown book from a collection of Rmd files, but the simplest way to get a book is to write everything in one long Rmd file, using major headings to define the chapters.</p>
+</div>
+<div id="knit-and-publish" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> knit and publish<a href="the-instructions.html#knit-and-publish" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="6" style="list-style-type: decimal">
+<li>click the <code>Knit</code> button in RStudio to render the book. It should display in RStudio’s default browser. You should now see a folder called <code>_book</code> in the <code>docs</code></li>
+<li>When you like what you see and have finished your edits, push the entire project to Github.</li>
+<li>Check your repo on GitHub. The files that contain your book will be there, but they will not display as a static web site. We can fix that.</li>
+<li>Open the <code>settings</code> of your repo and click on <code>pages</code>. It’s on the left hand side of the page.</li>
+</ol>
+<p><img src="step1.png" alt="the pages setup" />
+10. Under <code>source</code>, select <code>GitHub Actions</code> followed by <code>Static HTML</code>.
+11. You will be taken to a configuration document.</p>
+<div class="figure">
+<img src="pages.png" alt="" />
+<p class="caption">configuration</p>
+</div>
+<ol start="12" style="list-style-type: decimal">
+<li>The only thing you need to change is the <code>path</code> entry. The default is <code>.</code>. Change this to the folder that contains your bookdown output. In my case, this is <code>docs/_book</code>.</li>
+<li>Press the big green button to commit your change and pull it back down to your local repo.</li>
+<li>Wait a moment and then check under settings -&gt; pages again. You should see something like this:</li>
+</ol>
+<div class="figure">
+<img src="step2.png" alt="" />
+<p class="caption">final step</p>
+</div>
+<ol start="15" style="list-style-type: decimal">
+<li>GitHub informs you that your site is live at <code>[book_url]</code>.</li>
+<li>To make your book easy to find, copy this url and link to it from your <code>Readme</code>.</li>
+</ol>
+<p>You now have beautiful documentation to supplement your awesome project!</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="using-bookdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="another-chapter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
