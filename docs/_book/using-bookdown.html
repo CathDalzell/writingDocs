@@ -214,7 +214,18 @@ description: &quot;A simple Bookdown demo&quot;</code></pre>
 <li>click the <code>Knit</code> button in RStudio to render the book. It should display in RStudio’s default browser.</li>
 <li>When you like what you see, push the entire project to Github.</li>
 <li>Check your repo. The files that contain your book will be there, but they will not display as a static web site.</li>
+<li>Open the <code>settings</code> off your repo and click on <code>pages</code>. It’s on the left hand side of the page.</li>
 </ol>
+<p><img src="step1.png" alt="the pages setup" />
+10. Under <code>source</code>, select <code>GitHub Actions</code> followed by <code>Static HTML</code>.
+11. You will be taken to a configuration document.</p>
+<p><img src="pages.png" alt="configuration" />
+12. The only thing you need to change is the <code>path</code> entry. The default is <code>.</code>. Change this to the folder that contains your bookdown output. In my case, this is <code>docs/_book</code>.
+13. Press the big green button to commit your change and pull it back down to your local repo.
+14. Wait a moment and then check under settings -&gt; pages again. You should see something like this:</p>
+<p><img src="step2.png" alt="final step" />
+15. GitHub informs you that your site is live at <code>[book_url]</code>.
+16. To make your book easy to find, copy the url and link to it from your <code>Readme</code>.</p>
 </div>
 </div>
 </div>

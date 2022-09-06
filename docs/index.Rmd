@@ -96,8 +96,20 @@ It is possible to build a bookdown book from a collection of Rmd files, but the 
 6. click the `Knit` button in RStudio to render the book. It should display in RStudio's default browser. 
 7. When you like what you see, push the entire project to Github. 
 8. Check your repo. The files that contain your book will be there, but they will not display as a static web site.
+9. Open the `settings` off your repo and click on `pages`. It's on the left hand side of the page.
 
+![the pages setup](step1.png)
+10. Under `source`, select `GitHub Actions` followed by `Static HTML`.
+11. You will be taken to a configuration document.
 
+![configuration](pages.png)
+12. The only thing you need to change is the `path` entry. The default is `.`. Change this to the folder that contains your bookdown output. In my case, this is `docs/_book`.
+13. Press the big green button to commit your change and pull it back down to your local repo.
+14. Wait a moment and then check under settings -> pages again. You should see something like this:
+
+![final step](step2.png)
+15. GitHub informs you that your site is live at `[book_url]`.
+16. To make your book easy to find, copy the url and link to it from your `Readme`. 
 
 # Another chapter
 
